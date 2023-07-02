@@ -1,3 +1,7 @@
+html {
+  background-color: bisque;
+}
+
 header {
   text-align: center;
 }
@@ -30,15 +34,15 @@ td {
 }
 
 td:hover {
-  background-color: darkgrey;
+  background-color: rgba(159, 156, 156, 0.433);
 }
 
 .checkColor {
-  background-color: darkgrey;
+  background-color: rgba(159, 156, 156, 0.433);
 }
 
 .checkColor:hover {
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0);
 }
 
 .clicked {
@@ -52,6 +56,7 @@ td:hover {
   table-layout: fixed;
   border-collapse: collapse;
   width: 405px;
+  color: #fff;
   box-shadow: inset 0 0 50px #fff, /* inner white */ inset 20px 0 80px #f0f,
     /* inner left magenta short */ inset -20px 0 80px #0ff,
     /* inner right cyan short */ inset 20px 0 300px #f0f,
