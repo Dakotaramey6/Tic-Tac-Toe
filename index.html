@@ -11,7 +11,7 @@
       <button id="neon-time">Neon Mode</button>
     </header>
     <main id="app">
-      <table>
+      <table id="gameboard">
         <tbody class="board">
           <tr id="row1" class="row">
             <td id="block1" class="checkColor"></td>
@@ -31,6 +31,21 @@
         </tbody>
       </table>
     </main>
+    <footer>
+      <br />
+      <table id="scoreboard">
+        <tr>
+          <th>X Wins</th>
+          <th>O Wins</th>
+          <th>Ties</th>
+        </tr>
+        <tr>
+          <td id="xcounter"></td>
+          <td id="ocounter"></td>
+          <td id="tiecounter"></td>
+        </tr>
+      </table>
+    </footer>
     <script src="script.js"></script>
   </body>
 </html>
