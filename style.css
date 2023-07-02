@@ -4,10 +4,40 @@ html {
 
 header {
   text-align: center;
+  display: inline-flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+button {
+  border-radius: 100%;
+  background-color: bisque;
+  font-family: cursive;
+}
+
+button:hover {
+  box-shadow: inset 0 0 50px #fff, inset 20px 0 80px #f0f,
+    inset -20px 0 80px #0ff, inset 20px 0 300px #f0f, inset -20px 0 300px #0ff,
+    0 0 50px #fff, -10px 0 80px #f0f, 10px 0 80px #0ff;
+}
+
+.btn-neon {
+  border-radius: 100%;
+  box-shadow: inset 0 0 50px #fff, inset 20px 0 80px #f0f,
+    inset -20px 0 80px #0ff, inset 20px 0 300px #f0f, inset -20px 0 300px #0ff,
+    0 0 50px #fff, -10px 0 80px #f0f, 10px 0 80px #0ff;
+  font-family: cursive;
+}
+
+.btn-neon:hover {
+  background-color: bisque;
+  box-shadow: none;
 }
 
 h1 {
   font-family: cursive;
+  margin: auto;
+  padding-left: 80px;
 }
 
 main {

@@ -2,6 +2,7 @@
 const board = document.querySelector('.board');
 const table = document.querySelector('table');
 let tableData = document.querySelectorAll('.row > td');
+let neonBtn = document.querySelector('button');
 let OTurn = false; //Makes X Start first Game
 let winConditions = [
   //sets an array with win condtions used in check win function
@@ -16,7 +17,6 @@ let winConditions = [
 ];
 //these vars are used for neon/darkmode
 let neonHTML = document.querySelector('html');
-let neonBtn = document.querySelector('button');
 let neonH1 = document.querySelector('h1');
 
 const createX = (arr) => {
@@ -35,9 +35,6 @@ const createO = (arr) => {
 
 const startNewGame = (player, loser) => {
   alert(`${player} Wins ${loser} starts the next game`);
-  for (let s = 0; s < spanData.length; s++) {
-    console.log(spanData[s]);
-  }
   board.remove(boardText);
 };
 
@@ -81,6 +78,14 @@ const neonTime = () => {
   table.classList.toggle('neon-mode');
   neonHTML.classList.toggle('neon-mode-doc');
   neonH1.classList.toggle('neon-mode-h1');
+  neonBtn.classList.toggle('btn-neon');
+
+  //changes btn text based on mode
+  if (table.className === 'neon-mode') {
+    neonBtn.innerText = 'Basic Mode';
+  } else {
+    neonBtn.innerText = 'Neon Mode';
+  }
 };
 
 neonBtn.addEventListener('click', neonTime);
