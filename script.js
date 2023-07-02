@@ -4,6 +4,7 @@ const table = document.querySelector('table');
 let tableData = document.querySelectorAll('.row > td');
 let neonBtn = document.querySelector('button');
 let OTurn = false; //Makes X Start first Game
+let click = 0; //counts 'clicks' really just win a user places a X or O
 let winConditions = [
   //sets an array with win condtions used in check win function
   [0, 1, 2],
@@ -23,6 +24,7 @@ const createX = (arr) => {
   let X = document.createElement('span');
   X.classList.toggle('clicked');
   arr.appendChild(X).innerText = 'X';
+  click++;
   OTurn = true;
 };
 
@@ -30,12 +32,31 @@ const createO = (arr) => {
   let O = document.createElement('span');
   O.classList.toggle('clicked');
   arr.appendChild(O).innerText = 'O';
+  click++;
   OTurn = false;
 };
 
-const startNewGame = (player, loser) => {
-  alert(`${player} Wins ${loser} starts the next game`);
-  board.remove(boardText);
+const startNewGame = (winner, loser) => {
+  alert(`${winner} Wins ${loser} starts the next game`);
+  setTimeout(() => {
+    for (i = 0; i < tableData.length; i++) {
+      tableData[i].innerText = '';
+    }
+  }, 2000);
+  if (winner === 'X') {
+    OTurn = true;
+  } else {
+    OTurn = false;
+  }
+};
+
+const handleTie = () => {
+  alert(`Its a tie!`);
+  setTimeout(() => {
+    for (i = 0; i < tableData.length; i++) {
+      tableData[i].innerText = '';
+    }
+  }, 2000);
 };
 
 const checkWin = (gameBoard, player) => {
@@ -50,7 +71,11 @@ const checkWin = (gameBoard, player) => {
         sum++;
       }
     }
-    if (sum === 3) return true; //return true if sum equal to 3
+    if (sum === 3 && player === 'X') {
+      return startNewGame('X', 'O'); //return true if sum equal to 3
+    } else if (sum === 3 && player === 'O') {
+      return startNewGame('O', 'X');
+    }
   }
   return false;
 };
@@ -58,18 +83,20 @@ const checkWin = (gameBoard, player) => {
 for (let i = 0; i < tableData.length; i++) {
   //iterates over tabledata and then adds an event listener
   tableData[i].addEventListener('click', () => {
+    if (tableData[i].innerText.length > 0) {
+      return false;
+    }
     if (OTurn === false) {
-      createX(tableData[i]); //creates X based off function CreateX on clicked td
+      createX(tableData[i], click); //creates X based off function CreateX on clicked td
       checkWin(tableData, 'X');
-      if (checkWin === true) {
-        startNewGame('X', 'O');
-      }
     } else {
-      createO(tableData[i]); //creates O based off function CreateO on clicked td
+      createO(tableData[i], click); //creates O based off function CreateO on clicked td
       checkWin(tableData, 'O');
-      if (checkWin === true) {
-        startNewGame('O', 'X');
-      }
+    }
+    console.log(click);
+    //handles a tie situation
+    if (click === 9 && checkWin === false) {
+      handleTie();
     }
   });
 }
